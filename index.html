@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Web Application</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <h2 id="head">Enter Your Details</h2>
+    
+    <form id="userForm">
+      
+      
+     
+       <label for="name" class="label">Name:</label>
+      <input type="text" id="name" class="text" name="name">
+      <div id="nameError">Name is required!</div>
+      <br><br>
+    
+      <label for="email" class="label">Email:</label>
+      <input type="text" id="email" class="text" name="email">
+      <div id="emailError">Valid email is required!</div>
+    <br><br>
+      <button type="submit">Submit</button>
+    </form>
+    <h2 id="age">Predicted Age is:</h2>
+    <div id="predictedAge"></div>
+
+    <script>
+        
+        document.getElementById('userForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); 
+
+    
+            document.getElementById('nameError').style.display = 'none';
+            document.getElementById('emailError').style.display = 'none';
+            document.getElementById('predictedAge').textContent = '';
+
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            let valid = true;
+
+            
+            if (name.trim() === '') {
+                document.getElementById('nameError').style.display = 'block';
+                valid = false;
+            }
+
+        
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById('emailError').style.display = 'block';
+                valid = false;
+            }
+
+            if (!valid) return;
+
+            
+            try {
+                const response = await fetch(`https://api.agify.io?name=${name}`);
+                const data = await response.json();
+
+                
+                if (data.age) {
+                    document.getElementById('predictedAge').textContent = `Predicted age for ${name} is ${data.age}.`;
+                } else {
+                    document.getElementById('predictedAge').textContent = 'Could not retrieve predicted age.';
+                }
+            } catch (error) {
+                document.getElementById('predictedAge').textContent = 'An error occurred while fetching the data.';
+            }
+        });
+    </script>
+</body>
+</html>

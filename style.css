@@ -1,0 +1,72 @@
+body {
+    padding: 40px;
+    border-radius: 1px;
+   
+    
+}
+
+#head{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 35px;
+}
+
+#userForm {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: rgb(245, 245, 245);
+    padding: 20px;
+    border-radius: 6px;
+
+
+}
+
+.label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 20px;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.text{
+    width: 96%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+
+}
+
+#nameError {
+    color: red;
+    display: none;
+}
+
+#emailError {
+    color: red;
+    display: none;
+}
+
+button {
+    width: 50%;
+    padding: 12px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    display: block;
+    margin: 0 auto;
+}
+#predictedAge{
+    text-align: center;
+     font: 15px arial;
+      color:green;
+
+}
+#age{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
